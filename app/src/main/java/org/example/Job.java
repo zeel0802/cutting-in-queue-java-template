@@ -1,23 +1,28 @@
 package org.example;
 
-public class Job {
-  private String name;
-  private int priority;
+public class Job implements Comparable<Job> {
+    private String description;
+    private int priority;
 
-  Job(String name, int priority) {
-    this.name = name;
-    this.priority = priority;
-  }
+    public Job(String description, int priority) {
+        this.description = description;
+        this.priority = priority;
+    }
 
-  void execute() {
-    System.out.println("Running the job with name " + this.name + " and priority " + this.priority);
-  }
+    public String getDescription() {
+        return description;
+    }
 
-  String getName() {
-    return this.name;
-  }
+    public int getPriority() {
+        return priority;
+    }
 
-  int getPriority() {
-    return this.priority;
-  }
+    public void execute() {
+        System.out.println("Executing: " + description);
+    }
+
+    @Override
+    public int compareTo(Job other) {
+        return Integer.compare(other.priority, this.priority); // Max priority first
+    }
 }
